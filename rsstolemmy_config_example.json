@@ -1,0 +1,9 @@
+{"feedname": {
+	"username": "username",
+	"password": "password",
+	"totp":     "SHA256 TOTP hash",
+	"instance": "https://lemmy.example",
+        "community": "bot_testing@lemmy.world",
+        "feed": "https://website.example/feed.rss"
+	}
+}
