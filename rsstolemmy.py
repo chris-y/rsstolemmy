@@ -86,7 +86,7 @@ for rss in config:
     title = item.title
     desc = markdownify.markdownify(item.description)
     link = item.link
-    guid = item.guid
+    guid = item.link
 
     regex = re.compile('[^a-zA-Z0-9]')
     guid = regex.sub('', guid)
@@ -118,6 +118,8 @@ for rss in config:
     desclist[guid]["title"] = title
 
     if a["test"] is False:
+
+      comm = config[rss]["community"]
 
       if update == 0:
         community_id = lemmy.discover_community(comm)
