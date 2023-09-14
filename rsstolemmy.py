@@ -127,7 +127,8 @@ for rss in config:
         desclist[guid]["id"] = post["post_view"]["post"]["id"]
 
       if update == 1:
-        post = lemmy.post.edit(desclist[guid]["id"], name=title, body=desc)
+        if ("id" in desclist[guid]):
+          post = lemmy.post.edit(desclist[guid]["id"], name=title, body=desc)
 
       with open(descf, 'w') as outfile:
         json.dump(desclist, outfile)
