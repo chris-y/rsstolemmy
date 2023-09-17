@@ -117,7 +117,18 @@ for rss in config:
     desclist[guid]["desc"] = desc
     desclist[guid]["title"] = title
 
-    if a["test"] is False:
+    if "include_filter" in config[rss]:
+      match = False
+      for filter in config[rss]["include_filter"]:
+        if filter in desc:
+          print(f'[({filter}) include filter matched]')
+          match = True
+        else:
+          print('[filter not matched]')
+    else:
+      match = True
+
+    if ((a["test"] is False) and (match is True)):
 
       comm = config[rss]["community"]
 

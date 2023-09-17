@@ -5,5 +5,13 @@
 	"instance": "https://lemmy.example",
         "community": "bot_testing@lemmy.world",
         "feed": "https://website.example/feed.rss"
-	}
+	},
+"feedname2": {
+        "username": "botuser",
+        "password": "password",
+        "instance": "https://lemmy.example",
+        "community": "bot_testing@lemmy.world",
+        "feed": "https://website.example/feed2.rss",
+        "include_filter": [ "Only post when this text is in the description" ]
+        },
 }
