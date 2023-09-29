@@ -71,7 +71,8 @@ for rss in config:
       desclist = json.load(f)
   except:
     desclist = {}
-    newscount = 100
+    if(a["test"] is False):
+      newscount = 100
 
   lemmy = lemmy_login(config[rss])
 
@@ -87,6 +88,11 @@ for rss in config:
     desc = markdownify.markdownify(item.description)
     link = item.link
     guid = item.link
+    
+    if "category" in item:
+      cat = [t.term for t in item.get('tags', [])]
+    else:
+      cat = ""
 
     regex = re.compile('[^a-zA-Z0-9]')
     guid = regex.sub('', guid)
@@ -117,6 +123,8 @@ for rss in config:
     desclist[guid]["desc"] = desc
     desclist[guid]["title"] = title
 
+    match = True
+
     if "include_filter" in config[rss]:
       match = False
       for filter in config[rss]["include_filter"]:
@@ -125,8 +133,15 @@ for rss in config:
           match = True
         else:
           print('[filter not matched]')
-    else:
-      match = True
+      
+    if ((match is True) and ("include_cats" in config[rss])):
+      match = False
+      for filter in config[rss]["include_cats"]:
+        if filter in cat:
+          print(f'[({filter}) include cat matched]')
+          match = True
+        else:
+          print('[cat filter not matched]') 
 
     if ((a["test"] is False) and (match is True)):
 
