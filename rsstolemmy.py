@@ -119,10 +119,6 @@ for rss in config:
       print('[no update, not posting new news, nothing to do]')
       continue
 
-    desclist[guid] = {}
-    desclist[guid]["desc"] = desc
-    desclist[guid]["title"] = title
-
     match = True
 
     if "include_filter" in config[rss]:
@@ -150,11 +146,16 @@ for rss in config:
       if update == 0:
         community_id = lemmy.discover_community(comm)
         post = lemmy.post.create(community_id, title, body=desc, url=link)
+        desclist[guid] = {}
+        desclist[guid]["desc"] = desc
+        desclist[guid]["title"] = title
         desclist[guid]["id"] = post["post_view"]["post"]["id"]
 
       if update == 1:
         if ("id" in desclist[guid]):
           post = lemmy.post.edit(desclist[guid]["id"], name=title, body=desc)
+          desclist[guid]["desc"] = desc
+          desclist[guid]["title"] = title
 
       with open(descf, 'w') as outfile:
         json.dump(desclist, outfile)
