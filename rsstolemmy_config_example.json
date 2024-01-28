@@ -1,7 +1,8 @@
 {"feedname": {
 	"username": "username",
 	"password": "password",
-	"totp":     "SHA256 TOTP hash",
+	"totp":     "TOTP hash",
+	"digest":   "SHA1 (or SHA256 for pre-0.19 Lemmy)",
 	"instance": "https://lemmy.example",
         "community": "bot_testing@lemmy.world",
         "feed": "https://website.example/feed.rss"

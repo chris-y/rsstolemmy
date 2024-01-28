@@ -37,7 +37,7 @@ def lemmy_login(userauth):
   if ok is False:
     if "totp" in userauth:
       print("Retrying with TOTP code")
-      totp = pyotp.TOTP(userauth["totp"], digest="SHA256")
+      totp = pyotp.TOTP(userauth["totp"], digest=userauth["digest"])
       code = totp.now()
     else:
       code = input("Enter TOTP code:")
