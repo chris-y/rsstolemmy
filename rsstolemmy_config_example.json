@@ -5,7 +5,9 @@
 	"digest":   "SHA1 (or SHA256 for pre-0.19 Lemmy)",
 	"instance": "https://lemmy.example",
         "community": "bot_testing@lemmy.world",
-        "feed": "https://website.example/feed.rss"
+        "feed": "https://website.example/feed.rss",
+	"include_cats": [ "Include this category" ],
+	"exclude_author": [ "Exclude this author" ]
 	},
 "feedname2": {
         "username": "botuser",

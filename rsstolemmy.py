@@ -82,7 +82,8 @@ for rss in config:
 
   for item in news.entries:
 
-    #print(item)
+    if a["test"]:
+        print(item)
 
     title = item.title
     desc = markdownify.markdownify(item.description)
@@ -138,6 +139,15 @@ for rss in config:
           match = True
         else:
           print('[cat filter not matched]') 
+
+    if ((match is True) and ("exclude_author" in config[rss])):
+      for filter in config[rss]["exclude_author"]:
+        if filter in item.author:
+          print(f'[({filter}) exclude author matched]')
+          match = False
+        else:
+          print('[exclude author filter not matched]') 
+
 
     if ((a["test"] is False) and (match is True)):
 
